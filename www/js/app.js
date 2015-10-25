@@ -48,8 +48,9 @@ init = {
 			console.log(jsonObject);	
 			alert("we got the data!!!");
 
-			$('[name="api"]').append('<p>'+ jsonObject.name +'</p>');
+			$('[name="api"]').append('<p>'+ jsonObject.Name +'</p>');
 			$('[name="api"]').append('<p>'+ jsonObject.Bearing +'</p>');
+			$('[name="api"]').append('<p>'+ jsonObject.Count +'</p>');
 			// $('[name="api"]').append('<p>'+ jsonObject.Location.Longitude +'</p>');
 			// $('[name="api"]').append('<p>'+ jsonObject.Location.Latitude +'</p>');
 			// $('[name="api"]').append('<p>'+ jsonObject.Category +'</p>');
