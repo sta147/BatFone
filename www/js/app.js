@@ -32,6 +32,7 @@ var app = {
 
         // console.log('Received Event: ' + id);
         navigator.geolocation.getCurrentPosition(app.geolocationSuccess);
+		navigator.compass.getCurrentHeading(app.onCompassSuccess, app.onCompassError);
 		
     },
 	longitude:0, latitude: 0,
@@ -69,6 +70,15 @@ var app = {
 	});
 		//
 	},
+	onCompassSuccess: function(heading) {
+	    alert('Heading: ' + heading.magneticHeading);
+	},
+
+	onCompassError: function(error) {
+	    alert('CompassError: ' + error.code);
+	}
+
+
 
 };
 
