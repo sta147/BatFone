@@ -71,7 +71,7 @@ var app = {
 		//
 	},
 	onCompassSuccess: function(heading) {
-	    alert('Heading: ' + heading.magneticHeading);
+	    alert('Heading: ' + heading.trueHeading);
 	},
 
 	onCompassError: function(error) {

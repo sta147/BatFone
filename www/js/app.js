@@ -24,6 +24,7 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
+        alert("got into the receivedEvent function");
         // var listeningElement = parentElement.querySelector('.listening');
         // var receivedElement = parentElement.querySelector('.received');
 
