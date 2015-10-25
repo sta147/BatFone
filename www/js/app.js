@@ -22,7 +22,6 @@ var app = {
 var longitude;
 var latitude;
 
-
 var geolocationSuccess = function(position) {
 	window.latitude = position.coords.latitude;
 	window.longitude = position.coords.longitude;
@@ -41,18 +40,19 @@ init = {
 	update : function(){
 
 		$.ajax({
-		url: 'http://stealapi.apphb.com/api/Crime/GetACrimeSomewhereNearLocation?lat='+window.latitude+'&lng='+window.longitude,
+		url: 'http://stealapi.apphb.com/api/BlackSpot/DirectionFromLocation?lat='+window.latitude+'&lng='+window.longitude,
 		dataType: 'jsonp',
 		contentType: "application/json; charset=utf-8",
 		success: function(json) {
 			var jsonObject = json;
-			alert("we got the data!!!");
 			console.log(jsonObject);	
-			$('[name="api"]').append('<p>'+ jsonObject.Id +'</p>');
-			$('[name="api"]').append('<p>'+ jsonObject.PersistentId +'</p>');
-			$('[name="api"]').append('<p>'+ jsonObject.Location.Longitude +'</p>');
-			$('[name="api"]').append('<p>'+ jsonObject.Location.Latitude +'</p>');
-			$('[name="api"]').append('<p>'+ jsonObject.Category +'</p>');
+			alert("we got the data!!!");
+
+			$('[name="api"]').append('<p>'+ jsonObject.name +'</p>');
+			$('[name="api"]').append('<p>'+ jsonObject.Bearing +'</p>');
+			// $('[name="api"]').append('<p>'+ jsonObject.Location.Longitude +'</p>');
+			// $('[name="api"]').append('<p>'+ jsonObject.Location.Latitude +'</p>');
+			// $('[name="api"]').append('<p>'+ jsonObject.Category +'</p>');
 
 		}
 	});
