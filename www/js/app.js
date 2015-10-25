@@ -17,14 +17,31 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     onDeviceReady: function() {
         document.getElementById("entry").addEventListener('change', onEntryChange, false);
-
     }
 };
+var longitude;
+var latitude;
+
+
+var geolocationSuccess = function(position) {
+	window.latitude = position.coords.latitude;
+	window.longitude = position.coords.longitude;
+    alert('Latitude: '+ latitude+ '\n' +
+          'Longitude: '+ longitude+ '\n');
+    init.update();
+};
+function geolocationError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+navigator.geolocation.getCurrentPosition(geolocationSuccess);
+
 
 init = {
 	update : function(){
+
 		$.ajax({
-		url: 'http://stealapi.apphb.com/api/Crime/GetARandomCrime',
+		url: 'http://stealapi.apphb.com/api/Crime/GetACrimeSomewhereNearLocation?lat='+window.latitude+'&lng='+window.longitude,
 		dataType: 'jsonp',
 		contentType: "application/json; charset=utf-8",
 		success: function(json) {
@@ -36,9 +53,13 @@ init = {
 			$('[name="api"]').append('<p>'+ jsonObject.Location.Longitude +'</p>');
 			$('[name="api"]').append('<p>'+ jsonObject.Location.Latitude +'</p>');
 			$('[name="api"]').append('<p>'+ jsonObject.Category +'</p>');
+
 		}
 	});
 			//
 	}
+
 };
+
+
 
