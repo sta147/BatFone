@@ -1,4 +1,4 @@
-
+ document.write("<script type='text/javascript' src='compass.js'> </script>");
 
 var app = {
     // Application Constructor
@@ -33,6 +33,7 @@ function geolocationError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
 }
+
 navigator.geolocation.getCurrentPosition(geolocationSuccess);
 
 
@@ -47,6 +48,7 @@ init = {
 			var jsonObject = json;
 			console.log(jsonObject);	
 			alert("we got the data!!!");
+			// onCompassSuccess(jsonObject.Bearing);
 
 			$('[name="api"]').append('<p>'+ jsonObject.Name +'</p>');
 			$('[name="api"]').append('<p>'+ jsonObject.Bearing +'</p>');
@@ -61,6 +63,16 @@ init = {
 	}
 
 };
+
+function onCompassSuccess(heading) {
+    alert('Heading: ' + heading.magneticHeading);
+};
+
+function onCompassError(error) {
+    alert('CompassError: ' + error.code);
+};
+
+navigator.compass.getCurrentHeading(onCompassSuccess, onCompassError);
 
 
 

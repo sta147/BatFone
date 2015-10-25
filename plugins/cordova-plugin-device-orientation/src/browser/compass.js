@@ -79,6 +79,12 @@ var argscheck = require('cordova/argscheck'),
                 }, frequency);
             }
 
+            // Continuously calls deviceorientation listener and gets new heading values
+            deviceorientation = new Event('deviceorientation');
+            window.setInterval(function() {
+                window.dispatchEvent(deviceorientation);
+            }, 200);
+
             return id;
         },
 
