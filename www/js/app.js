@@ -17,6 +17,9 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     onDeviceReady: function() {
         document.getElementById("entry").addEventListener('change', onEntryChange, false);
+        
+        var watchID = navigator.compass.watchHeading(onCompassSuccess, onCompassError, options);
+
     }
 };
 var longitude;
@@ -65,14 +68,18 @@ init = {
 };
 
 function onCompassSuccess(heading) {
-    alert('Heading: ' + heading.magneticHeading);
+	alert('Heading: ' + heading.magneticHeading);
+    // var element = document.getElementById('heading');
+    // element.innerHTML = 'Heading: ' + heading.magneticHeading;
 };
 
-function onCompassError(error) {
-    alert('CompassError: ' + error.code);
+function onCompassError(compassError) {
+    alert('Compass error: ' + compassError.code);
 };
 
-navigator.compass.getCurrentHeading(onCompassSuccess, onCompassError);
+var options = {
+    frequency: 3000
+}; // Update every 3 seconds
 
 
 
