@@ -1,0 +1,24 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.Bat.Fone"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.Bat.Fone"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "com.Bat.Fone"
+        },
+        "org.apache.cordova.geolocation": {
+            "PACKAGE_NAME": "com.Bat.Fone"
+        }
+    },
+    "dependent_plugins": {}
+}

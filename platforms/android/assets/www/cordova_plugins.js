@@ -32,7 +32,8 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.0.0",
     "cordova-plugin-device-orientation": "1.0.1",
-    "org.apache.cordova.geolocation": "0.3.12"
+    "org.apache.cordova.geolocation": "0.3.12",
+    "org.apache.cordova.console": "0.2.13"
 }
 // BOTTOM OF METADATA
 });

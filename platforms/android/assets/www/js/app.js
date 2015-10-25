@@ -1,45 +1,50 @@
- document.write("<script type='text/javascript' src='compass.js'> </script>");
-
+var watchID = null;
+function bindEvents() {
+        alert('I m a bnding...:');
+        document.addEventListener('deviceready', function(){alert("OOOOOOO")}, true);
+    }
 var app = {
     // Application Constructor
     initialize: function() {
-        this.bindEvents();
+        bindEvents();
+        alert('I have statrted...:');
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
+    
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     onDeviceReady: function() {
+        alert('I am ready..:');
+
         document.getElementById("entry").addEventListener('change', onEntryChange, false);
+
+        navigator.geolocation.getCurrentPosition(app.geolocationSuccess, app,geolocationError);
     }
 };
 var longitude;
 var latitude;
 
-var geolocationSuccess = function(position) {
+app.geolocationSuccess = function(position) {
 	window.latitude = position.coords.latitude;
 	window.longitude = position.coords.longitude;
     alert('Latitude: '+ latitude+ '\n' +
           'Longitude: '+ longitude+ '\n');
-    init.update();
+    app.init().update();
 };
-function geolocationError(error) {
+app,geolocationError = function geolocationError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
 }
 
-navigator.geolocation.getCurrentPosition(geolocationSuccess);
 
 
-init = {
-	update : function(){
-
+app.init = function init(){
+	update : function update(){
+		alert("watchHeading");
 		$.ajax({
 		url: 'http://stealapi.apphb.com/api/BlackSpot/DirectionFromLocation?lat='+window.latitude+'&lng='+window.longitude,
 		dataType: 'jsonp',
@@ -57,6 +62,9 @@ init = {
 			// $('[name="api"]').append('<p>'+ jsonObject.Location.Latitude +'</p>');
 			// $('[name="api"]').append('<p>'+ jsonObject.Category +'</p>');
 
+		},
+		error: function(json) {
+			alert("Error occurred whilst getting data.");
 		}
 	});
 			//
@@ -64,15 +72,26 @@ init = {
 
 };
 
-function onCompassSuccess(heading) {
-    alert('Heading: ' + heading.magneticHeading);
+
+	var onCompassSuccess = function(heading) {
+		alert('Heading: ' + heading.magneticHeading);
+	    // var element = document.getElementById('heading');
+	    // element.innerHTML = 'Heading: ' + heading.magneticHeading;
+	};
+
+	 var onCompassError = function(compassError) {
+	    alert('Compass error: ' + compassError.code);
+	};
+
+	var options = {
+		frequency: 3000
+	}; // Update every 3 seconds
+
+
+
+app.startWatch = function(){
+		if (null == window.watchID){
+			 var watchID = navigator.compass.watchHeading(onCompassSuccess, onCompassError, options);
+			};
 };
-
-function onCompassError(error) {
-    alert('CompassError: ' + error.code);
-};
-
-navigator.compass.getCurrentHeading(onCompassSuccess, onCompassError);
-
-
 

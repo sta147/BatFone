@@ -44,6 +44,9 @@
         },
         "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "com.Bat.Fone"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "com.Bat.Fone"
         }
     },
     "dependent_plugins": {}
