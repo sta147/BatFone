@@ -32,7 +32,8 @@ var app = {
         // receivedElement.setAttribute('style', 'display:block;');
 
         // console.log('Received Event: ' + id);
-        navigator.geolocation.getCurrentPosition(app.geolocationSuccess);
+
+        navigator.geolocation.getCurrentPosition(app.geolocationSuccess, app.geolocationError);
 		navigator.compass.getCurrentHeading(app.onCompassSuccess, app.onCompassError);
 		
     },
